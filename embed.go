@@ -6,7 +6,7 @@ import (
 	"github.com/bwmarrin/discordgo"
 )
 
-//Embed ...
+// Embed ...
 type Embed struct {
 	*discordgo.MessageEmbed
 }
@@ -14,26 +14,26 @@ type Embed struct {
 // Constants for message embed character limits
 const (
 	EmbedLimitTitle       = 256
-	EmbedLimitDescription = 2048
+	EmbedLimitDescription = 4096
 	EmbedLimitFieldValue  = 1024
 	EmbedLimitFieldName   = 256
 	EmbedLimitField       = 25
 	EmbedLimitFooter      = 2048
-	EmbedLimit            = 4000
+	EmbedLimit            = 6000
 )
 
-//NewEmbed returns a new embed object
+// NewEmbed returns a new embed object
 func NewEmbed() *Embed {
 	return &Embed{&discordgo.MessageEmbed{}}
 }
 
-//SetTitle ...
+// SetTitle ...
 func (e *Embed) SetTitle(name string) *Embed {
 	e.Title = name
 	return e
 }
 
-//SetDescription [desc]
+// SetDescription [desc]
 func (e *Embed) SetDescription(description string) *Embed {
 	if len(description) > 2048 {
 		description = description[:2048]
@@ -42,7 +42,7 @@ func (e *Embed) SetDescription(description string) *Embed {
 	return e
 }
 
-//AddField [name] [value]
+// AddField [name] [value]
 func (e *Embed) AddField(name, value string) *Embed {
 	fields := make([]*discordgo.MessageEmbedField, 0)
 
@@ -96,7 +96,7 @@ func (e *Embed) AddField(name, value string) *Embed {
 	return e
 }
 
-//SetFooter [Text] [iconURL]
+// SetFooter [Text] [iconURL]
 func (e *Embed) SetFooter(args ...string) *Embed {
 	iconURL := ""
 	text := ""
@@ -124,7 +124,7 @@ func (e *Embed) SetFooter(args ...string) *Embed {
 	return e
 }
 
-//SetImage ...
+// SetImage ...
 func (e *Embed) SetImage(args ...string) *Embed {
 	var URL string
 	var proxyURL string
@@ -145,7 +145,7 @@ func (e *Embed) SetImage(args ...string) *Embed {
 	return e
 }
 
-//SetThumbnail ...
+// SetThumbnail ...
 func (e *Embed) SetThumbnail(args ...string) *Embed {
 	var URL string
 	var proxyURL string
@@ -166,7 +166,7 @@ func (e *Embed) SetThumbnail(args ...string) *Embed {
 	return e
 }
 
-//SetAuthor ...
+// SetAuthor ...
 func (e *Embed) SetAuthor(args ...string) *Embed {
 	var (
 		name     string
@@ -201,13 +201,13 @@ func (e *Embed) SetAuthor(args ...string) *Embed {
 	return e
 }
 
-//SetURL ...
+// SetURL ...
 func (e *Embed) SetURL(URL string) *Embed {
 	e.URL = URL
 	return e
 }
 
-//SetColor ...
+// SetColor ...
 func (e *Embed) SetColor(clr int) *Embed {
 	e.Color = clr
 	return e
@@ -232,7 +232,7 @@ func (e *Embed) Truncate() *Embed {
 
 // Adds last field as InLine
 func (e *Embed) MakeFieldInline() *Embed {
-	length := len(e.Fields)-1
+	length := len(e.Fields) - 1
 	e.Fields[length].Inline = true
 	return e
 }
